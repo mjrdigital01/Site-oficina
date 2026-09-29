@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Auto Center - Oficina Mecânica</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080808;
+            color: white;
+        }
+
+        header {
+            background: #050505;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ff1e2d;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #ff1e2d;
+        }
+
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 70px 7%;
+            background:
+                linear-gradient(90deg, #050505 20%, rgba(5,5,5,.65), rgba(5,5,5,.2)),
+                url("https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .tag {
+            color: #ff1e2d;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 55px;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #ddd;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .btn-red {
+            background: #ff1e2d;
+            color: white;
+        }
+
+        .btn-dark {
+            border: 1px solid white;
+            color: white;
+        }
+
+        section {
+            padding: 80px 7%;
+        }
+
+        .section-title {
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .section-title span {
+            color: #ff1e2d;
+            font-weight: bold;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            color: #aaa;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service {
+            background: #111;
+            border: 1px solid #262626;
+            padding: 30px;
+            border-radius: 12px;
+            transition: .3s;
+        }
+
+        .service:hover {
+            transform: translateY(-5px);
+            border-color: #ff1e2d;
+        }
+
+        .service-icon {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .service h3 {
+            margin-bottom: 10px;
+        }
+
+        .service p {
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        .about {
+            background: #101010;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .about-text p {
+            color: #bbb;
+            line-height: 1.7;
+            margin: 20px 0;
+        }
+
+        .numbers {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .number strong {
+            display: block;
+            font-size: 28px;
+            color: #ff1e2d;
+        }
+
+        .number small {
+            color: #aaa;
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .review {
+            background: #111;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #242424;
+        }
+
+        .stars {
+            color: #ffd000;
+            margin-bottom: 15px;
+        }
+
+        .review p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .contact {
+            background: #080808;
+        }
+
+        .contact-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info p {
+            margin: 18px 0;
+            color: #bbb;
+        }
+
+        .map {
+            min-height: 300px;
+            background: #151515;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #777;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer {
+            background: #030303;
+            border-top: 1px solid #222;
+            padding: 30px 7%;
+            text-align: center;
+            color: #777;
+        }
+
+        .whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #25d366;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,.4);
+        }
+
+        @media (max-width: 800px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 5px;
+                font-size: 12px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            .services,
+            .reviews,
+            .about,
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .numbers {
+                flex-wrap: wrap;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        AUTO <span>CENTER</span>
+    </div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+</header>
+
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            🔧 OFICINA MECÂNICA ESPECIALIZADA
+        </div>
+
+        <h1>
+            Seu carro em boas mãos!
+        </h1>
+
+        <p>
+            Manutenção preventiva e corretiva com qualidade,
+            transparência e confiança.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                class="btn btn-red"
+                href="https://wa.me/5531999999999"
+                target="_blank">
+                📱 Agende pelo WhatsApp
+            </a>
+
+            <a
+                class="btn btn-dark"
+                href="#servicos">
+                Nossos serviços
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="servicos">
+
+    <div class="section-title">
+
+        <span>NOSSOS SERVIÇOS</span>
+
+        <h2>
+            Tudo para cuidar do seu veículo
+        </h2>
+
+        <p>
+            Trabalhamos com manutenção e reparos
+            para manter seu carro seguro e funcionando bem.
+        </p>
+
+    </div>
+
+
+    <div class="services">
+
+        <div class="service">
+            <div class="service-icon">🔧</div>
+            <h3>Mecânica Geral</h3>
+            <p>
+                Manutenção e reparos em diversos sistemas do veículo.
+            </p>
+        </div>
+
+        <div class="service">
+            <div class="service-icon">🛑</div>
+            <h3>Freios</h3>
+            <p>
+                Revisão e manutenção do sistema de freios.
+            </p>
+        </div>
+
+        <div class="service">
+            <div class="service-icon">🚗</div>
+            <h3>Suspensão</h3>
+            <p>
+                Diagnóstico e reparo da suspensão do veículo.
+            </p>
+        </div>
+
+        <div class="service">
+            <div class="service-icon">⚡</div>
+            <h3>Elétrica</h3>
+            <p>
+                Diagnóstico de problemas elétricos e eletrônicos.
+            </p>
+        </div>
+
+        <div class="service">
+            <div class="service-icon">💻</div>
+            <h3>Injeção Eletrônica</h3>
+            <p>
+                Diagnóstico e manutenção do sistema de injeção.
+            </p>
+        </div>
+
+        <div class="service">
+            <div class="service-icon">🛢️</div>
+            <h3>Troca de Óleo</h3>
+            <p>
+                Troca de óleo e filtros para manutenção do motor.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="about" id="sobre">
+
+    <img
+        src="https://images.unsplash.com/photo-1632823471565-1ecdf5c2d8d4?auto=format&fit=crop&w=1000&q=80"
+        alt="Mecânico trabalhando">
+
+    <div class="about-text">
+
+        <span class="tag">
+            SOBRE NÓS
+        </span>
+
+        <h2>
+            Experiência, qualidade e confiança.
+        </h2>
+
+        <p>
+            Somos uma oficina especializada em manutenção
+            automotiva. Nosso objetivo é oferecer um serviço
+            transparente, rápido e de qualidade.
+        </p>
+
+        <div class="numbers">
+
+            <div class="number">
+                <strong>5+</strong>
+                <small>Anos de experiência</small>
+            </div>
+
+            <div class="number">
+                <strong>500+</strong>
+                <small>Carros atendidos</small>
+            </div>
+
+            <div class="number">
+                <strong>100%</strong>
+                <small>Compromisso</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="avaliacoes">
+
+    <div class="section-title">
+
+        <span>AVALIAÇÕES</span>
+
+        <h2>
+            O que nossos clientes dizem
+        </h2>
+
+    </div>
+
+
+    <div class="reviews">
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Excelente atendimento e serviço de qualidade.
+                Recomendo!"
+            </p>
+
+            <strong>
+                Carlos
+            </strong>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Equipe profissional e muito transparente.
+                Voltarei novamente."
+            </p>
+
+            <strong>
+                Mariana
+            </strong>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Serviço rápido e eficiente.
+                Recomendo para todos."
+            </p>
+
+            <strong>
+                João
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="contact" id="contato">
+
+    <div class="contact-box">
+
+        <div class="contact-info">
+
+            <span class="tag">
+                ENTRE EM CONTATO
+            </span>
+
+            <h2>
+                Estamos prontos para atender!
+            </h2>
+
+            <p>
+                📱 WhatsApp: (31) 99999-9999
+            </p>
+
+            <p>
+                ☎️ Telefone: (31) 3825-6789
+            </p>
+
+            <p>
+                📍 Av. das Indústrias, 123 - Veneza 2
+            </p>
+
+            <p>
+                🕒 Segunda a sexta: 8h às 18h
+            </p>
+
+            <br>
+
+            <a
+                class="btn btn-red"
+                href="https://wa.me/5531999999999"
+                target="_blank">
+                Falar no WhatsApp
+            </a>
+
+        </div>
+
+
+        <div class="map">
+
+            📍
+
+            <br><br>
+
+            COLOQUE AQUI O MAPA
+            <br>
+            da oficina do cliente
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 Auto Center — Todos os direitos reservados.
+
+</footer>
+
+
+<a
+    class="whatsapp"
+    href="https://wa.me/5531999999999"
+    target="_blank">
+
+    💬 WhatsApp
+
+</a>
+
+
+</body>
+  </html>
